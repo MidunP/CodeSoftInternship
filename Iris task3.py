@@ -51,16 +51,16 @@ print(data.info())
 print("\nMissing values in each column:")
 print(data.isnull().sum())
 
-if "rating" in data.columns:
+if "types" in data.columns:
 
-    top_rated_movies = data.sort_values(by="rating", ascending=False).head(10)
-    print("\nTop 10 highest-rated movies:")
-    print(top_rated_movies[["title", "rating"]])
+    different types = data.sort_values(by="rare", ascending=False).head(10)
+    print("\nTop rare types:")
+    print(top_rare[["name", "rare"]])
 
     # Distribution of ratings
     plt.figure(figsize=(10, 6))
     sns.histplot(data["rating"], bins=20, kde=True, color="blue")
-    plt.title("Distribution of Movie Ratings")
+    plt.title("loaction")
     plt.xlabel("Rating")
     plt.ylabel("Frequency")
     plt.show()
@@ -68,21 +68,21 @@ if "rating" in data.columns:
     # Average rating per genre
     if "genre" in data.columns:
         avg_rating_per_genre = data.groupby("genre")["rating"].mean().sort_values(ascending=False)
-        print("\nAverage rating per genre:")
-        print(avg_rating_per_genre)
+        print("\nAverage rare per type:")
+        print(avg_rating_per_type)
 
         # Plot average rating per genre
         plt.figure(figsize=(12, 6))
         avg_rating_per_genre.plot(kind="bar", color="orange")
-        plt.title("Average Rating per Genre")
+        plt.title("Average Rare per type")
         plt.xlabel("Genre")
-        plt.ylabel("Average Rating")
+        plt.ylabel("Average Rare")
         plt.xticks(rotation=45)
         plt.show()
     else:
-        print("\n'genre' column not found in the dataset.")
+        print("\n'type' column not found in the dataset.")
 else:
-    print("\n'rating' column not found in the dataset.")
+    print("\n'rare' column not found in the dataset.")
 
 print(data.dtypes)
 
